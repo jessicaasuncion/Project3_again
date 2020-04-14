@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CS401_project3</string>
+    <string name="login_horizon_email">Horizon Email:</string>
+    <string name="login_signin_button">Sign In</string>
+    <string name="login_password">Password:</string>
+    <string name="login_csueb">CSUEB</string>
+    <string name="login_connect">Connect</string>
+    <string name="csueb_logo_pic">CSUEB_logo_pic</string>
+    <string name="login_register_button">Register</string>
+</resources>
