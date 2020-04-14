@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/edit_account_msg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name(FIRST)"
+        android:text="First Name"
         app:layout_constraintBottom_toTopOf="@+id/edit_last"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -72,7 +72,7 @@
         android:layout_marginRight="18dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textVisiblePassword|textPassword"
         android:text="Password"
         app:layout_constraintBottom_toTopOf="@+id/edit_pass2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textVisiblePassword"
         android:text="Confirm Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -108,7 +108,7 @@
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name(LAST)"
+        android:text="Last Name"
         app:layout_constraintBottom_toTopOf="@+id/edit_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -121,14 +121,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginLeft="41dp"
-        android:layout_marginTop="272dp"
         android:layout_marginEnd="41dp"
         android:layout_marginRight="41dp"
         android:layout_marginBottom="20dp"
-        android:text="Continue"
+        android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pass2" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_pass2"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
