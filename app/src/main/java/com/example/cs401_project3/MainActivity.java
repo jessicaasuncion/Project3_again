@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,10 +29,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //STEP1: firebase setup
+        // create a Firebase instance
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        //STEP 2:  setup of login/password gui ojects
+        // grab objects for email and password EditTexts
         emailID = findViewById(R.id.emailEnter);
         passwordID = findViewById(R.id.passwordEnter);
         btnSignUp = findViewById(R.id.signUpBTN);
+
+        //STUEP 3:  Login using Firebase
+        // Register event listener to login given email & password from Firebase
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,14 +62,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // if no error...
                 else if(!(email.isEmpty() && pwd.isEmpty())) {
-                    mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    //Toast.makeText(MainActivity.this, email + " " + pwd, Toast.LENGTH_LONG).show();
+                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()) {
-                                Toast.makeText(MainActivity.this, "Incorrect password. Please try again", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
+                            // if email & password is correct: login to home page
+                            if(task.isSuccessful()) {
+                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                String s = "Welcome back " + user.getEmail();
+                                Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                            }
+                            // if not correct: error message to re try
+                            else {
+                                Toast.makeText(MainActivity.this, "Incorrect password. Please try again", Toast.LENGTH_SHORT).show();
+                                // updateUI(null);
                             }
                         }
                     });
@@ -78,5 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }
