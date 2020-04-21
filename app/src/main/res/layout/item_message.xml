@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">
+
+        <!--show user profile photo-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/usericon"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <!--To test: tools:text="User Name"-->
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:text="User Name"
+                android:clickable="true"
+                android:onClick="MessageListActivity" />
+
+            <!--when a user post a photo on a chat room-->
+            <!--havnt implemented yet-->
+            <ImageView
+                android:id="@+id/messageImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"/>
+
+            <!--Show actual message that user typed in-->
+            <TextView
+                android:id="@+id/messageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message contents"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
