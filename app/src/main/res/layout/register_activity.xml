@@ -21,7 +21,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
-        android:text="First Name" />
+        android:hint="First Name"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edit_last"
@@ -29,7 +30,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
-        android:text="Last Name" />
+        android:hint="Last Name"
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/edit_email"
@@ -37,8 +39,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Horizon Email"
+        android:inputType="text"
+        android:hint="Horizon Email"
         />
 
     <EditText
@@ -48,7 +50,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textVisiblePassword|textPassword"
-        android:text="Password" />
+        android:hint="Password" />
 
     <EditText
         android:id="@+id/edit_pass2"
@@ -57,7 +59,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textVisiblePassword"
-        android:text="Confirm Password" />
+        android:hint="Confirm Password" />
 
     <Button
         android:id="@+id/signUpBTN"
