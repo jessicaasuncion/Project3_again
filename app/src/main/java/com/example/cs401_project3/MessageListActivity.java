@@ -17,10 +17,10 @@ public class MessageListActivity extends AppCompatActivity {
         setContentView(R.layout.message_list_activity);
 
         //set and get database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+       ///DatabaseReference myRef = database.getReference("message");
 
 
-        myRef.setValue("Hello, World");
+        //myRef.setValue("Hello, World");
     }
 }
