@@ -17,6 +17,7 @@ public class MessageBoxActivity extends AppCompatActivity {
         setContentView(R.layout.item_message);
 
         textView = (TextView) findViewById(R.id.nameTextView);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
