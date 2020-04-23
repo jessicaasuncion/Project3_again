@@ -17,12 +17,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSignUp, btnRegister;
+    Button btnSignIn, btnRegister;
     EditText emailID, passwordID;
-    FirebaseAuth mFirebaseAuth;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +33,96 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //STEP1: firebase setup
-        // create a Firebase instance
-        mFirebaseAuth = FirebaseAuth.getInstance();
+        // create a Firebase instance & reference
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
 
         //STEP 2:  setup of login/password gui ojects
         // grab objects for email and password EditTexts
         emailID = findViewById(R.id.emailEnter);
         passwordID = findViewById(R.id.passwordEnter);
-        btnSignUp = findViewById(R.id.signUpBTN);
+        btnSignIn = findViewById(R.id.signInBTN);
+        btnRegister = findViewById(R.id.registerBTN);
 
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register();
+            }
+        });
+    }
+/*
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Check auth on Activity start
+        if (firebaseAuth.getCurrentUser() != null) {
+            success(firebaseAuth.getCurrentUser());
+        }
+    }*/
+
+    private void login() {
+        String email = emailID.getText().toString();
+        String password = passwordID.getText().toString();
+
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                // if email & password is correct: login to home page
+                if(task.isSuccessful()) {
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    String s = "Welcome back " + user.getEmail();
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                }
+                // if not correct: error message to re try
+                else {
+                    Toast.makeText(MainActivity.this, "Sign in failed.", Toast.LENGTH_SHORT).show();
+                    // updateUI(null);
+                }
+            }
+        });
+    }
+
+    private void register() {
+        String email = emailID.getText().toString();
+        String password = passwordID.getText().toString();
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Registration error", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    success(task.getResult().getUser());
+                }
+            }
+        });
+    }
+
+
+    private void success(FirebaseUser user) {
+        newUser(user.getUid(), user.getEmail());
+        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+        finish();
+    }
+
+    private void newUser(String userId, String email) {
+        User user = new User(email);
+        databaseReference.child("Users").child(userId).setValue(user);
+    }
+
+       /*
         //STUEP 3:  Login using Firebase
         // Register event listener to login given email & password from Firebase
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -85,17 +169,5 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-
-        btnRegister = (Button) findViewById(R.id.registerBTN);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-    }
+        });*/
 }
