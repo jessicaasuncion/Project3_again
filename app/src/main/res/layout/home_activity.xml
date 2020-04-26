@@ -22,4 +22,10 @@
         android:layout_height="wrap_content"
         android:text="Message" />
 
+    <Button
+        android:id="@+id/updateBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Profile" />
+
 </LinearLayout>

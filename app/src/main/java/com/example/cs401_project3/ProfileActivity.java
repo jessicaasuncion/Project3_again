@@ -10,16 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class HomeActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private Button btnMessage, btnUpdate;
+    private Button btnUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+        setContentView(R.layout.profile_activity);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -28,23 +28,15 @@ public class HomeActivity extends AppCompatActivity {
             finish();
             return;
         }
-
         else {
-            btnMessage = (Button)findViewById(R.id.messageBtn);
-            btnMessage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    startActivity(new Intent(HomeActivity.this, MessageBoxActivity.class));
-                }
-            });
-
             btnUpdate = (Button)findViewById(R.id.updateBTN);
             btnUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                    startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
                 }
             });
         }
+
     }
 }

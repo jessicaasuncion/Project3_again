@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //STEP 2:  setup of login/password gui ojects
         // grab objects for email and password EditTexts
         emailID = findViewById(R.id.emailEnter);
-        passwordID = findViewById(R.id.passwordEnter);
+        passwordID = findViewById(R.id.majorEnter);
         btnSignIn = findViewById(R.id.signInBTN);
         btnRegister = findViewById(R.id.registerBTN);
 
