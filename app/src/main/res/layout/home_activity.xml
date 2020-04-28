@@ -7,25 +7,77 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/firstNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:ems="10"
+        android:hint="First Name"
+        android:importantForAutofill="no"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:inputType="text" />
 
-    <Button
-        android:id="@+id/messageBtn"
+    <TextView
+        android:id="@+id/lastNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message" />
+        android:ems="10"
+        android:hint="Last Name"
+        android:importantForAutofill="no"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:inputType="text" />
 
-    <Button
-        android:id="@+id/updateBTN"
+    <TextView
+        android:id="@+id/birthdayID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Profile" />
+        android:ems="10"
+        android:hint="Birthday"
+        android:importantForAutofill="no"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:inputType="date|text" />
+
+    <TextView
+        android:id="@+id/majorID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Major"
+        android:importantForAutofill="no"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+        <Button
+            android:id="@+id/matchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match" />
+
+        <Button
+            android:id="@+id/messageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message" />
+
+        <Button
+            android:id="@+id/updateBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Profile" />
+
+        <Button
+            android:id="@+id/signOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign out" />
+    </LinearLayout>
 
 </LinearLayout>

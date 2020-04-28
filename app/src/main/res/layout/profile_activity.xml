@@ -14,9 +14,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Create an account" />
-
     <EditText
-        android:id="@+id/majorEnter"
+        android:id="@+id/firstNameEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
