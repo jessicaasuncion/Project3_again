@@ -80,4 +80,10 @@
             android:text="Sign out" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:text="Match" />
+
 </LinearLayout>
