@@ -28,4 +28,10 @@
         android:layout_height="wrap_content"
         android:text="Update Profile" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:text="Match" />
+
 </LinearLayout>

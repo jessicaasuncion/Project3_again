@@ -7,7 +7,12 @@ import java.util.Map;
 
 public class User {
     //public String uid, firstName, lastName, email, password, cPassword;
-    public String email;
+    public static final String FIELD_MAJOR = "major";
+    public static final String FIELD_NAME = "name";
+
+
+    private String name;
+    private String major;
 
     // default constructor
     public User() {
@@ -15,8 +20,27 @@ public class User {
     }
 
     // constructor
-    public User(String email) {
-        this.email = email;
+    public User(String major, String name) {
+
+        this.major = major;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+
+    }
+
+    public String getMajor(){
+        return major;
+    }
+
+    public void setMajor(String email){
+        this.major = email;
     }
 
 /*
