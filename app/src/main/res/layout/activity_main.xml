@@ -8,111 +8,58 @@
 
     <EditText
         android:id="@+id/emailEnter"
-        android:layout_width="wrap_content"
+        android:hint="Email"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="157dp"
-        android:layout_marginLeft="157dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="337dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="343dp" />
+        android:layout_marginBottom="340dp"/>
 
-    <TextView
-        android:id="@+id/horizonEmailLabel"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/passwordEnter"
+        android:hint="Password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="337dp"
-        android:text="@string/login_horizon_email"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/emailEnter"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/csuebLogo" />
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="280dp"
+        android:importantForAutofill="no"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/signInBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/majorEnter"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginRight="161dp"
-        android:layout_marginBottom="-63dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="200dp"
         android:text="@string/login_signin_button"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/majorEnter" />
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="200dp" />
 
-    <EditText
-        android:id="@+id/majorEnter"
+
+    <Button
+        android:id="@+id/registerBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="157dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="281dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEnter"
-        app:layout_constraintVertical_bias="0.033" />
-
-    <TextView
-        android:id="@+id/passwordLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="282dp"
-        android:text="@string/login_password"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/majorEnter"
-        app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizonEmailLabel"
-        app:layout_constraintVertical_bias="0.068" />
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="10dp"
+        android:text="Register"
+        android:textSize="14sp"/>
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textView4"
         android:layout_width="106dp"
         android:layout_height="46dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="147dp"
         android:layout_marginEnd="126dp"
         android:layout_marginRight="126dp"
@@ -126,9 +73,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toEndOf="@+id/csuebLogo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textView5"
         android:layout_width="214dp"
         android:layout_height="79dp"
@@ -144,38 +91,19 @@
         android:textColor="#840023"
         android:textSize="42sp"
         app:fontFamily="@font/bowlby_one"
-        app:layout_constraintBottom_toTopOf="@+id/emailEnter" />
+        app:layout_constraintBottom_toTopOf="@+id/emailEnter" />-->
 
     <ImageView
         android:id="@+id/csuebLogo"
         android:layout_width="148dp"
         android:layout_height="203dp"
         android:layout_above="@+id/horizonEmailLabel"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
         android:layout_marginTop="76dp"
         android:layout_marginBottom="56dp"
         android:contentDescription="@string/csueb_logo_pic"
-        android:cropToPadding="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/csueb_logo" />
 
-    <Button
-        android:id="@+id/registerBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="163dp"
-        android:layout_marginLeft="163dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:layout_marginBottom="161dp"
-        android:text="@string/login_register_button"/>
 
 </RelativeLayout>

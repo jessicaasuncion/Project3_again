@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseUser user = fAuth.getCurrentUser();
                     String s = "Welcome back " + user.getEmail();
                     Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    //startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }
                 // if not correct: error message to re try
                 else {
@@ -106,63 +106,5 @@ public class MainActivity extends AppCompatActivity {
         fAuth.removeAuthStateListener(firebaseListener);
     }
 
-    /*
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // Check auth on Activity start
-        if (firebaseAuth.getCurrentUser() != null) {
-            success(firebaseAuth.getCurrentUser());
-        }
-    }*/
-
-       /*
-        //STUEP 3:  Login using Firebase
-        // Register event listener to login given email & password from Firebase
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailID.getText().toString();
-                String pwd = passwordID.getText().toString();
-                // error if user doesn't enter an email
-                if(email.isEmpty()) {
-                    emailID.setError("Please enter your email");
-                    emailID.requestFocus();
-                }
-                // error if user doesn't enter a password
-                else if(pwd.isEmpty()) {
-                    passwordID.setError("Please enter your password");
-                    passwordID.requestFocus();
-                }
-                // error if user doesn't enter both
-                else if(email.isEmpty() && pwd.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please enter your email and password", Toast.LENGTH_SHORT).show();
-                }
-                // if no error...
-                else if(!(email.isEmpty() && pwd.isEmpty())) {
-                    //Toast.makeText(MainActivity.this, email + " " + pwd, Toast.LENGTH_LONG).show();
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            // if email & password is correct: login to home page
-                            if(task.isSuccessful()) {
-                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                                String s = "Welcome back " + user.getEmail();
-                                Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                            }
-                            // if not correct: error message to re try
-                            else {
-                                Toast.makeText(MainActivity.this, "Incorrect password. Please try again", Toast.LENGTH_SHORT).show();
-                                // updateUI(null);
-                            }
-                        }
-                    });
-                }
-                else {
-                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
 }

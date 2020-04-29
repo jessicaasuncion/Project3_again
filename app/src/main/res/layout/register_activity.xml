@@ -40,7 +40,6 @@
             android:id="@+id/textView5"
             android:layout_width="214dp"
             android:layout_height="79dp"
-            android:layout_above="@+id/emailEnter"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
@@ -54,8 +53,7 @@
             android:text="@string/login_connect"
             android:textColor="#840023"
             android:textSize="42sp"
-            app:fontFamily="@font/bowlby_one"
-            app:layout_constraintBottom_toTopOf="@+id/emailEnter" />
+            app:fontFamily="@font/bowlby_one" />
 
         <ImageView
             android:id="@+id/csuebLogo"
@@ -132,13 +130,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/registerBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#6F001B"
-        android:text="Register"
-        android:textColor="#F9F9F9"
-        android:padding="10dp"/>
+    android:id="@+id/registerBTN"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#6F001B"
+    android:text="Register"
+    android:textColor="#F9F9F9"
+    android:padding="10dp"/>
 
 </LinearLayout>
