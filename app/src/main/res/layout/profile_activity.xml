@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ProfileActivity">
 
     <TextView
         android:id="@+id/edit_account_msg"
@@ -15,7 +15,7 @@
         android:inputType="textPersonName"
         android:text="Create an account" />
     <EditText
-        android:id="@+id/firstNameEnter"
+        android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,7 +24,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/lastNameEnter"
+        android:id="@+id/lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,7 +33,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/birthdayEnter"
+        android:id="@+id/birthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -42,7 +42,7 @@
         android:inputType="date|text" />
 
     <EditText
-        android:id="@+id/majorEnter"
+        android:id="@+id/major"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,7 +54,12 @@
         android:id="@+id/updateBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Profile" />
+        android:text="Update" />
 
+    <Button
+        android:id="@+id/homeBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home" />
 
 </LinearLayout>

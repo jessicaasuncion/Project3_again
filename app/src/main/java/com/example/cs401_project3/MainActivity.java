@@ -18,12 +18,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnSignIn, btnRegister;
     EditText emailID, passwordID;
+
     private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth fAuth;
+    private FirebaseAuth.AuthStateListener firebaseListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +38,16 @@ public class MainActivity extends AppCompatActivity {
         //STEP1: firebase setup
         // create a Firebase instance & reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        firebaseAuth = FirebaseAuth.getInstance();
+        fAuth = FirebaseAuth.getInstance();
 
+        firebaseListener = new FirebaseAuth.AuthStateListener()
+        {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
+            {
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            }
+        };
 
         //STEP 2:  setup of login/password gui ojects
         // grab objects for email and password EditTexts
@@ -53,31 +66,21 @@ public class MainActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
     }
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Check auth on Activity start
-        if (firebaseAuth.getCurrentUser() != null) {
-            success(firebaseAuth.getCurrentUser());
-        }
-    }*/
 
     private void login() {
-        String email = emailID.getText().toString();
-        String password = passwordID.getText().toString();
+        final String email = emailID.getText().toString();
+        final String password = passwordID.getText().toString();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 // if email & password is correct: login to home page
                 if(task.isSuccessful()) {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    FirebaseUser user = fAuth.getCurrentUser();
                     String s = "Welcome back " + user.getEmail();
                     Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
@@ -91,34 +94,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void register() {
-        String email = emailID.getText().toString();
-        String password = passwordID.getText().toString();
-
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(!task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Registration error", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    success(task.getResult().getUser());
-                }
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fAuth.addAuthStateListener(firebaseListener);
     }
 
-
-    private void success(FirebaseUser user) {
-        newUser(user.getUid(), user.getEmail());
-        startActivity(new Intent(MainActivity.this, HomeActivity.class));
-        finish();
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fAuth.removeAuthStateListener(firebaseListener);
     }
 
-    private void newUser(String userId, String email) {
-        User user = new User(email);
-        databaseReference.child("Users").child(userId).setValue(user);
-    }
+    /*
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Check auth on Activity start
+        if (firebaseAuth.getCurrentUser() != null) {
+            success(firebaseAuth.getCurrentUser());
+        }
+    }*/
 
        /*
         //STUEP 3:  Login using Firebase

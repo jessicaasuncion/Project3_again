@@ -43,12 +43,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
         String userId = firebaseAuth.getCurrentUser().getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         // initialize views
         profileFirst = findViewById(R.id.firstNameID);

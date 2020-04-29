@@ -7,4 +7,5 @@
     <string name="login_connect">Connect</string>
     <string name="csueb_logo_pic">CSUEB_logo_pic</string>
     <string name="login_register_button">Register</string>
+    <string name="home_button">Button</string>
 </resources>
