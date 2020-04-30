@@ -28,7 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Cards cardsData[];
+    private Cards[] cardsData;
     private ArrayAdapterClass arrayAdapter;
 
     private FirebaseAuth mAuth;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapterClass(this, R.layout.activity_login, rowItems);
         //arrayAdapter.notifyDataSetChanged();
 
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
