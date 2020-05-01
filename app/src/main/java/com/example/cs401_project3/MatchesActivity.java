@@ -22,7 +22,7 @@ import com.google.firebase.database.Query;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MatchActivity extends AppCompatActivity {
+public class MatchesActivity extends AppCompatActivity {
 
 /*
     private EditText editText, etd;

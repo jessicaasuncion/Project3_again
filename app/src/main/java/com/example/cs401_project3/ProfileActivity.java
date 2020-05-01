@@ -30,21 +30,20 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
-    private EditText profileFirst, profileLast, profileBirthday, profileMajor;
+    private EditText profileFirst, profileLast, profileMajor;
     private Button btnUpdate, btnHome;
 
-    private String firstName, lastName, birthday, major;
+    private String firstName, lastName, major;
     private String currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_activity);
+        setContentView(R.layout.activity_profile);
 
         // set text views
         profileFirst = findViewById(R.id.firstName);
         profileLast = findViewById(R.id.lastName);
-        profileBirthday = findViewById(R.id.birthday);
         profileMajor = findViewById(R.id.major);
 
         // set button views
@@ -67,41 +66,45 @@ public class ProfileActivity extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                return;
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             }
         });
+
     }
 
     private void profileInformation() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0)
+                if(dataSnapshot.exists())
                 {
                     Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
-                    if(map.get("FirstName") != null)
+                    if (dataSnapshot.getChildrenCount() > 0)
+                    {
+                        if(map.get("FirstName") != null)
+                        {
+                            firstName = map.get("FirstName").toString();
+                            profileFirst.setText(firstName);
+                        }
+                        if(map.get("LastName") != null)
+                        {
+                            lastName = map.get("LastName").toString();
+                            profileLast.setText(lastName);
+                        }
+                        if(map.get("Major") != null)
+                        {
+                            major = map.get("Major").toString();
+                            profileMajor.setText(major);
+                        }
+                    }
+                    else if(dataSnapshot.getChildrenCount() == 0)
                     {
                         firstName = map.get("FirstName").toString();
-                        profileFirst.setText(firstName);
-                    }
-
-                    if(map.get("LastName") != null)
-                    {
                         lastName = map.get("LastName").toString();
-                        profileLast.setText(lastName);
-                    }
-
-                    if(map.get("Birthday") != null)
-                    {
-                        birthday = map.get("Birthday").toString();
-                        profileBirthday.setText(birthday);
-                    }
-
-                    if(map.get("Major") != null)
-                    {
                         major = map.get("Major").toString();
-                        profileMajor.setText(major);
+                        map.put("FirstName", firstName);
+                        map.put("LastName", lastName);
+                        map.put("Major", major);
                     }
                 }
             }
@@ -116,18 +119,15 @@ public class ProfileActivity extends AppCompatActivity {
     private void saveProfile() {
         firstName = profileFirst.getText().toString();
         lastName = profileLast.getText().toString();
-        birthday = profileBirthday.getText().toString();
         major = profileMajor.getText().toString();
 
         Map userMap = new HashMap();
 
         userMap.put("FirstName", firstName);
         userMap.put("LastName", lastName);
-        userMap.put("Birthday", birthday);
         userMap.put("Major", major);
 
         databaseReference.updateChildren(userMap);
         Toast.makeText(ProfileActivity.this, "Profile created", Toast.LENGTH_LONG).show();
-
     }
 }
