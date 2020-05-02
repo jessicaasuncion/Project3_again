@@ -2,6 +2,7 @@ package com.example.cs401_project3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class ChatActivity extends AppCompatActivity
     private Button sendBtn;
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
-    private String user, matchId, chatId;
+    private String userId, chatWithId, chatId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,12 +47,13 @@ public class ChatActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        // get current user
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        matchId = getIntent().getExtras().getString("matchId");
+        chatWithId = getIntent().getExtras().getString("matchId");
 
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(user).child("Matches").child(matchId).child("chatId");
-        mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Messages");
+        mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Messages").child(chatWithId);
 
         getChatId();
 
@@ -69,6 +71,8 @@ public class ChatActivity extends AppCompatActivity
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getChatId();
+                getChatMessages();
                 sendMsg();
             }
         });
@@ -81,7 +85,7 @@ public class ChatActivity extends AppCompatActivity
             DatabaseReference newMessageDb = mDatabaseChat.push();
 
             Map newMessage = new HashMap();
-            newMessage.put("createdByUser", user);
+            newMessage.put("createdByUser", userId);
             newMessage.put("text", sendMessageText);
 
             newMessageDb.push().setValue(newMessage);
@@ -132,7 +136,7 @@ public class ChatActivity extends AppCompatActivity
                     if(message != null && createdByUser != null)
                     {
                         Boolean currentUserBoolean = false;
-                        if(createdByUser.equals(user))
+                        if(createdByUser.equals(userId))
                         {
                             currentUserBoolean = true;
                         }
@@ -166,4 +170,26 @@ public class ChatActivity extends AppCompatActivity
     {
         return resultsChat;
     }
+
+    public void logoutUser(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ChatActivity.this, LogInActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToSettings(View view)
+    {
+        Intent intent = new Intent(ChatActivity.this, ProfileActivity.class);
+        startActivity(intent);
+        return;
+    }
+
+    public void goToFriends(View view) {
+        Intent intent = new Intent(ChatActivity.this, MatchesActivity.class);
+        startActivity(intent);
+        return;
+    }
 }
+
+
